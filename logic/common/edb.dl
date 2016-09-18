@@ -25,7 +25,7 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 // IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// Modeled after the specs in the DOOP framework (http://doop.program-analysis.org/)
+// Modeled after the points-to specs in the DOOP framework (http://doop.program-analysis.org/)
 
 // Copyright (C) 2008-2009  Martin Bravenboer
 //
@@ -61,121 +61,121 @@
 // ActualParam
 //
 
-.decl ActualParam(index:number,invocation:MethodInvocationRef,var:VarRef) input 
+.decl ActualParam(index:number,invocation:tyMethodInvocationRef,var:tyVarRef) input 
 
 //
 // ArrayType
 //
 
-.decl ArrayType(x:ArrayType) input 
+.decl ArrayType(x:tyArrayType) input 
 
 //
 // AssignCast
 //
 
-.decl AssignCast(type:Type,from:VarRef,to:VarRef,inmethod:MethodSignatureRef) input 
+.decl AssignCast(type:tyType,from:tyVarRef,to:tyVarRef,inmethod:tyMethodSignatureRef) input 
 
 
 //
 // AssignLocal
 //
 
-.decl AssignLocal(from:VarRef,to:VarRef,inmethod:MethodSignatureRef) input 
+.decl AssignLocal(from:tyVarRef,to:tyVarRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // AssignReturnValue
 //
 
-.decl AssignReturnValue(invocation:MethodInvocationRef,to:VarRef) input 
+.decl AssignReturnValue(invocation:tyMethodInvocationRef,to:tyVarRef) input 
 
 //
 // BasicBlockRef
 //
 
-.decl BasicBlockRef(basicBlock:BasicBlockRef) input 
+.decl BasicBlockRef(basicBlock:tyBasicBlockRef) input 
 
 //
 // BasicBlockEntry
 //
 
-.decl BasicBlockEntry(basicBlock:BasicBlockRef) input 
+.decl BasicBlockEntry(basicBlock:tyBasicBlockRef) input 
 
 //
 // BasicBlockIn
 //
 
-.decl BasicBlockIn(basicBlock:BasicBlockRef,method:MethodSignatureRef) input 
+.decl BasicBlockIn(basicBlock:tyBasicBlockRef,method:tyMethodSignatureRef) input 
 
 
 //
 // BasicBlockExit
 //
 
-.decl BasicBlockExit(basicBlock:BasicBlockRef) input
+.decl BasicBlockExit(basicBlock:tyBasicBlockRef) input
 
 //
 // BasicBlockSuccessor
 //
 
-.decl BasicBlockSuccessor(b1:BasicBlockRef, b2:BasicBlockRef) input 
+.decl BasicBlockSuccessor(b1:tyBasicBlockRef, b2:tyBasicBlockRef) input 
 
 //
 // BasicBlockLastInvocationIndex
 //
 
-.decl BasicBlockLastInvocationIndex(b1:BasicBlockRef, n:number) input 
+.decl BasicBlockLastInvocationIndex(b1:tyBasicBlockRef, n:number) input 
 
 //
 // InvocationBasicBlock
 //
-.decl InvocationBasicBlock(c:MethodInvocationRef, b:BasicBlockRef, i:number) input
+.decl InvocationBasicBlock(c:tyMethodInvocationRef, b:tyBasicBlockRef, i:number) input
 
 //
 // SuccessorInvocationIndex
 //
-.decl SuccessorInvocationIndex(i:number, j: number) input
+.decl SuccessorInvocationIndex(i:number, j:number) input
 
 
 //
 // ClassConstant
 //
 
-.decl ClassConstant(x:ClassConstant) input 
+.decl ClassConstant(x:tyClassConstant) input 
 
 //
 // ClassModifier
 //
 
-.decl ClassModifier(modifier:ModifierRef,type:Type) input 
+.decl ClassModifier(modifier:tyModifierRef,type:tyType) input 
 
 //
 // ClassType
 //
 
-.decl ClassType(x:ClassType) input 
+.decl ClassType(x:tyClassType) input 
 
 //
 // ComponentType
 //
 
-.decl ComponentType(arrayType:ArrayType,componentType:Type) input 
+.decl ComponentType(arrayType:tyArrayType,componentType:tyType) input 
 
 /* Each instance field of given type is assigned an index, unique number among 
  * other fields of the same type. The field can be then identified by its index 
  * instead of its name. */
-.decl DirectFieldIndexSignature(type:Type,index:number,field:FieldSignatureRef) input 
+.decl DirectFieldIndexSignature(type:tyType,index:number,field:tyFieldSignatureRef) input 
 
 //
 // DirectSuperclass
 //
 
-.decl DirectSuperclass(ref:Type,super:Type) input 
+.decl DirectSuperclass(ref:tyType,super:tyType) input 
 
 //
 // DirectSuperinterface
 //
 
-.decl DirectSuperinterface(class:Type,interface:Type) input 
+.decl DirectSuperinterface(class:tyType,interface:tyType) input 
 
 //
 // ExternalHeapAllocation
@@ -187,22 +187,22 @@
 //  
 
 #ifdef OPENWORLD_PER_METHOD
-.decl ExternalHeapAllocation(heap:HeapAllocationRef)
+.decl ExternalHeapAllocation(heap:tyHeapAllocationRef)
 #else
-.decl ExternalHeapAllocation(heap:HeapAllocationRef) input 
+.decl ExternalHeapAllocation(heap:tyHeapAllocationRef) input 
 #endif
 
 //
 // FieldModifier
 //
 
-.decl FieldModifier(modifier:ModifierRef,field:FieldSignatureRef) input 
+.decl FieldModifier(modifier:tyModifierRef,field:tyFieldSignatureRef) input 
 
 //
 // FieldSignature
 //
 
-.decl FieldSignature(ref:FieldSignatureRef,declaringClass:Type,simplename:SimpleNameRef,type:Type) input 
+.decl FieldSignature(ref:tyFieldSignatureRef,declaringClass:tyType,simplename:tySimpleNameRef,type:tyType) input 
 
 //
 // FieldSignatureRef
@@ -214,13 +214,13 @@
 // FormalParam
 //
 
-.decl FormalParam(index:number,method:MethodSignatureRef,var:VarRef) input 
+.decl FormalParam(index:number,method:tyMethodSignatureRef,var:tyVarRef) input 
 
 //
 // HeapAllocationRefDebugInfo
 //
 
-.decl HeapAllocationRefDebugInfo(file:File,line:number,heap:HeapAllocationRef) input 
+.decl HeapAllocationRefDebugInfo(file:tyFile,line:number,heap:tyHeapAllocationRef) input 
 
 
 
@@ -228,265 +228,264 @@
 // InstructionIndex
 //
 
-.decl InstructionIndex(instruction:InstructionRef,index:number) input 
+.decl InstructionIndex(instruction:tyInstructionRef,index:number) input 
 
 //
 // LoadArrayIndex
 //
 
-.decl LoadArrayIndex(base:VarRef,to:VarRef,inmethod:MethodSignatureRef) input 
+.decl LoadArrayIndex(base:tyVarRef,to:tyVarRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // LoadInstanceFieldIndex
 //
 
-.decl LoadInstanceFieldIndex(base:VarRef,index:number,to:VarRef,inmethod:MethodSignatureRef) input 
-
+.decl LoadInstanceFieldIndex(base:tyVarRef,index:number,to:tyVarRef,inmethod:tyMethodSignatureRef) input
+ 
 //
 // LoadPrimStaticField
 //
 
-.decl LoadPrimStaticField(sig:FieldSignatureRef,inmethod:MethodSignatureRef) input 
+.decl LoadPrimStaticField(sig:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) input
 
 //
 // LoadStaticField
 //
 
-.decl LoadStaticField(sig:FieldSignatureRef,to:VarRef,inmethod:MethodSignatureRef) input 
+.decl LoadStaticField(sig:tyFieldSignatureRef,to:tyVarRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // LoadStaticFieldDebugInfo
 //
 
-.decl LoadStaticFieldDebugInfo(file:File,line:number,field:FieldSignatureRef,to:VarRef) input 
+.decl LoadStaticFieldDebugInfo(file:tyFile,line:number,field:tyFieldSignatureRef,to:tyVarRef) input 
 
 //
 // MethodDeclaration
 //
 
-.decl MethodDeclaration(signature:MethodSignatureRef,ref:MethodSignatureRef) input 
+.decl MethodDeclaration(signature:tyMethodSignatureRef,ref:tyMethodSignatureRef) input 
 
 //
 // MethodModifier
 //
 
-.decl MethodModifier(mod:ModifierRef,method:MethodSignatureRef) input 
+.decl MethodModifier(mod:tyModifierRef,method:tyMethodSignatureRef) input 
 
 //
 // MethodSignatureDescriptor
 //
 
-.decl MethodSignatureDescriptor(signature:MethodSignatureRef,descriptor:MethodDescriptorRef) input 
+.decl MethodSignatureDescriptor(signature:tyMethodSignatureRef,descriptor:tyMethodDescriptorRef) input 
 
 //
 // MethodSignatureSimpleName
 //
 
-.decl MethodSignatureSimpleName(signature:MethodSignatureRef,simplename:SimpleNameRef) input 
+.decl MethodSignatureSimpleName(signature:tyMethodSignatureRef,simplename:tySimpleNameRef) input 
 
 //
 // MethodSignatureType
 //
 
-.decl MethodSignatureType(signature:MethodSignatureRef,type:Type) input 
+.decl MethodSignatureType(signature:tyMethodSignatureRef,type:tyType) input 
 
 
 //
 // NestedClass
 //
 
-.decl NestedClass(enclosingClass:Type,nestedClass:Type) input 
+.decl NestedClass(enclosingClass:tyType,nestedClass:tyType) input 
 
 //
 // ReifiedClass
 //
 
-.decl ReifiedClass(type:Type,heap:ClassConstant) input 
+.decl ReifiedClass(type:tyType,heap:tyClassConstant) input 
 
 //
 // ReturnVar
 //
 
-.decl ReturnVar(var:VarRef,method:MethodSignatureRef) input 
+.decl ReturnVar(var:tyVarRef,method:tyMethodSignatureRef) input 
 
 //
 // SimpleNameRef
 //
 
-.decl SimpleNameRef(x:SimpleNameRef) input 
+.decl SimpleNameRef(x:tySimpleNameRef) input 
 
 //
 // SpecialMethodInvocationBase
 //
 
-.decl SpecialMethodInvocationBase(invocation:MethodInvocationRef,base:VarRef) input 
+.decl SpecialMethodInvocationBase(invocation:tyMethodInvocationRef,base:tyVarRef) input 
 
 //
 // SpecialMethodInvocationIn
 //
 
-.decl SpecialMethodInvocationIn(invocation:MethodInvocationRef,inmethod:MethodSignatureRef) input 
+.decl SpecialMethodInvocationIn(invocation:tyMethodInvocationRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // SpecialMethodInvocationSignature
 //
 
-.decl SpecialMethodInvocationSignature(invocation:MethodInvocationRef,signature:MethodSignatureRef) input 
+.decl SpecialMethodInvocationSignature(invocation:tyMethodInvocationRef,signature:tyMethodSignatureRef) input 
 
 //
 // StaticMethodInvocation
 //
 
-.decl StaticMethodInvocation(invocation:MethodInvocationRef,signature:MethodSignatureRef,inmethod:MethodSignatureRef) input 
+.decl StaticMethodInvocation(invocation:tyMethodInvocationRef,signature:tyMethodSignatureRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // StaticMethodInvocationIn
 //
 
-.decl StaticMethodInvocationIn(invocation:MethodInvocationRef,inmethod:MethodSignatureRef) input 
+.decl StaticMethodInvocationIn(invocation:tyMethodInvocationRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // StaticMethodInvocationSignature
 //
 
-.decl StaticMethodInvocationSignature(invocation:MethodInvocationRef,signature:MethodSignatureRef) input 
+.decl StaticMethodInvocationSignature(invocation:tyMethodInvocationRef,signature:tyMethodSignatureRef) input 
 
 //
-// StoreArrayIndex
-//
-
-.decl StoreArrayIndex(from:VarRef,base:VarRef,inmethod:MethodSignatureRef) input 
+// StoreInstanceField
+// 
+.decl StoreInstanceField(from:tyVarRef,base:tyVarRef,index:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) input
 
 //
 // StoreInstanceFieldIndex
 //
 
-.decl StoreInstanceFieldIndex(from:VarRef,base:VarRef,index:number,inmethod:MethodSignatureRef) input 
+.decl StoreInstanceFieldIndex(from:tyVarRef,base:tyVarRef,index:number,inmethod:tyMethodSignatureRef) input
 
 //
 // StorePrimStaticField
 //
 
-.decl StorePrimStaticField(signature:FieldSignatureRef,inmethod:MethodSignatureRef) input 
+.decl StorePrimStaticField(signature:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // StoreStaticField
 //
 
-.decl StoreStaticField(from:VarRef,signature:FieldSignatureRef,inmethod:MethodSignatureRef) input 
+.decl StoreStaticField(from:tyVarRef,signature:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // StoreStaticFieldDebugInfo
 //
 
-.decl StoreStaticFieldDebugInfo(file:File,line:number,from:VarRef,field:FieldSignatureRef) input 
+.decl StoreStaticFieldDebugInfo(file:tyFile,line:number,from:tyVarRef,field:tyFieldSignatureRef) input 
 
 //
 // StringConstant
 //
 
-.decl StringConstant(x:StringConstant) input 
+.decl StringConstant(x:tyStringConstant) input 
 
 //
 // ThisVar
 //
 
-.decl ThisVar(method:MethodSignatureRef,var:VarRef) input 
+.decl ThisVar(method:tyMethodSignatureRef,var:tyVarRef) input 
 
 //
 // UnknownReturnedHeapAllocation
 //
 
-.decl UnknownReturnedHeapAllocation(callsite:MethodInvocationRef,heap:HeapAllocationRef) input 
+.decl UnknownReturnedHeapAllocation(callsite:tyMethodInvocationRef,heap:tyHeapAllocationRef) input 
 
 //
 // VarType
 //
 
-.decl VarType(ref:VarRef,type:Type) input 
+.decl VarType(ref:tyVarRef,type:tyType) input 
 
 //
 // VarDeclaringMethod
 //
 
-.decl VarDeclaringMethod(var:VarRef, method:MethodSignatureRef) input
+.decl VarDeclaringMethod(var:tyVarRef, method:tyMethodSignatureRef) input
 
 //
 // VarargsActualParam
 //
 
-.decl VarargsActualParam(var:VarRef,index:number,invocation:MethodInvocationRef) input 
+.decl VarargsActualParam(var:tyVarRef,index:number,invocation:tyMethodInvocationRef) input 
 
 //
 // VirtualMethodInvocationBase
 //
 
-.decl VirtualMethodInvocationBase(invocation:MethodInvocationRef,base:VarRef) input 
+.decl VirtualMethodInvocationBase(invocation:tyMethodInvocationRef,base:tyVarRef) input 
 
 //
 // VirtualMethodInvocationIn
 //
 
-.decl VirtualMethodInvocationIn(invocation:MethodInvocationRef,inmethod:MethodSignatureRef) input 
+.decl VirtualMethodInvocationIn(invocation:tyMethodInvocationRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // VirtualMethodInvocationSignature
 //
 
-.decl VirtualMethodInvocationSignature(invocation:MethodInvocationRef,signature:MethodSignatureRef) input 
+.decl VirtualMethodInvocationSignature(invocation:tyMethodInvocationRef,signature:tyMethodSignatureRef) input 
 
 //
 // InterfaceType
 //
 
-.decl InterfaceType(x:InterfaceType) input 
+.decl InterfaceType(x:tyInterfaceType) input 
 
 //
 // MethodDescriptorRef
 //
 
-.decl MethodDescriptorRef(x:MethodDescriptorRef) input 
+.decl MethodDescriptorRef(x:tyMethodDescriptorRef) input 
 
 //
 // MethodInvocationRef
 //
 
-.decl MethodInvocationRef(x:MethodInvocationRef) input 
+.decl MethodInvocationRef(x:tyMethodInvocationRef) input 
 
 //
 // MethodSignatureRef
 //
 
-.decl MethodSignatureRef(x:MethodSignatureRef) input 
-.decl MethodSignatureRefDebugInfo(file:File,line:number,x:MethodSignatureRef) input
+.decl MethodSignatureRef(x:tyMethodSignatureRef) input 
+.decl MethodSignatureRefDebugInfo(file:tyFile,line:number,x:tyMethodSignatureRef) input
 
 //
 // ModifierRef
 //
 
-.decl ModifierRef(x:ModifierRef) input 
+.decl ModifierRef(x:tyModifierRef) input 
 
 //
 // NullType
 //
 
-.decl NullType(x:NullType) input 
+.decl NullType(x:tyNullType) input 
 
 //
 // PrimitiveType
 //
 
-.decl PrimitiveType(t:PrimitiveType) input 
+.decl PrimitiveType(t:tyPrimitiveType) input 
 
-.decl VarRef(v: VarRef) input
-.decl VarRefDebugInfo(file:File,line:number,v:VarRef) input
+.decl VarRef(v:tyVarRef) input
+.decl VarRefDebugInfo(file:tyFile,line:number,v:tyVarRef) input
 
 
 //
 // local variables inside a method
 //
 
-//.decl MethodVarRef(method:MethodSignatureRef,var:VarRef) input
+//.decl MethodVarRef(method:tyMethodSignatureRef,var:tyVarRef) input
 
 
 
@@ -495,7 +494,7 @@
   // HeapAllocationType
   //
   
-.decl HeapAllocationType(heap:HeapAllocationRef,type:Type) input
+.decl HeapAllocationType(heap:tyHeapAllocationRef,type:tyType) input
   
   
   //
@@ -503,30 +502,30 @@
   //
   
   
-.decl AssignHeapAllocation(heap:HeapAllocationRef,to:VarRef,inmethod:MethodSignatureRef) input
+.decl AssignHeapAllocation(heap:tyHeapAllocationRef,to:tyVarRef,inmethod:tyMethodSignatureRef) input
 
 
 
 #ifdef ADAPTIVE_CONTEXT_SENSITIVITY 
 
 
-.decl ObjectNotToRefine(heap:HeapAllocationRef) input
+.decl ObjectNotToRefine(heap:tyHeapAllocationRef) input
 
    
-.decl Object3HContext(heap:HeapAllocationRef) input
+.decl Object3HContext(heap:tyHeapAllocationRef) input
 
 
-.decl Object2HContext(heap:HeapAllocationRef) input
+.decl Object2HContext(heap:tyHeapAllocationRef) input
 
 
-.decl InvocationNotToRefine(invocation:MethodInvocationRef) input
+.decl InvocationNotToRefine(invocation:tyMethodInvocationRef) input
 
 
 #endif 
     
    
 #ifdef FLOW_SENSITIVE
-.decl BasicBlockSuccessorVarNotNull(bb1:BasicBlockRef, bb2:BasicBlockRef, var: VarRef) input 
-.decl BasicBlockSuccessorVarNull(bb1:BasicBlockRef, bb2:BasicBlockRef, var: VarRef) input 
+.decl BasicBlockSuccessorVarNotNull(bb1:tyBasicBlockRef, bb2:tyBasicBlockRef, var:tyVarRef) input 
+.decl BasicBlockSuccessorVarNull(bb1:tyBasicBlockRef, bb2:tyBasicBlockRef, var:tyVarRef) input 
 #endif
 

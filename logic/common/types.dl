@@ -25,7 +25,7 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 // IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// Modeled after the specs in the DOOP framework (http://doop.program-analysis.org/)
+// Modeled after the points-to specs in the DOOP framework (http://doop.program-analysis.org/)
 
 // Copyright (C) 2008-2009  Martin Bravenboer
 //
@@ -61,37 +61,38 @@
 
 .type String
 
-.type ArrayType = String
-.type BasicBlockRef = String
-.type ClassConstant = String
-.type ClassType = String
-.type FieldSignatureRef = String
-.type File = String
-.type InterfaceType = String
-.type VarRef = String
-.type MethodDescriptorRef = String
-.type MethodInvocationRef = String
-.type MethodSignatureRef = String
-.type ModifierRef = String
-.type NullType = String
-.type PrimitiveType = String
-.type SimpleNameRef = String
-.type StringConstant = String
-
-.type ParamIndexRef = number
-
-.type HeapAllocationRef = StringConstant | ClassConstant
-.type InstructionRef = CallGraphEdgeSourceRef
-.type ReferenceType = ArrayType | ClassType | InterfaceType
-.type CallGraphEdgeSourceRef = HeapAllocationRef | MethodInvocationRef
-.type Type = PrimitiveType | ReferenceType | NullType
-
-.type Context = [obj1:HeapAllocationRef,obj2:HeapAllocationRef]
-.type SigCtxHeap = [sig:FieldSignatureRef,basectx:Context,baseheap:HeapAllocationRef]
-
 .type Int = number
+
+.type tyArrayType = String
+.type tyBasicBlockRef = String
+.type tyClassConstant = String
+.type tyClassType = String
+.type tyFieldSignatureRef = String
+.type tyFile = String
+.type tyInterfaceType = String
+.type tyVarRef = String
+.type tyMethodDescriptorRef = String
+.type tyMethodInvocationRef = String
+.type tyMethodSignatureRef = String
+.type tyModifierRef = String
+.type tyNullType = String
+.type tyPrimitiveType = String
+.type tySimpleNameRef = String
+.type tyStringConstant = String
+
+.type tyParamIndexRef = number
+
+.type tyHeapAllocationRef = tyStringConstant | tyClassConstant
+.type tyInstructionRef = tyCallGraphEdgeSourceRef
+.type tyReferenceType = tyArrayType | tyClassType | tyInterfaceType
+.type tyCallGraphEdgeSourceRef = tyHeapAllocationRef | tyMethodInvocationRef
+.type tyType = tyPrimitiveType | tyReferenceType | tyNullType
+
+.type tyContext = [obj1:tyHeapAllocationRef,obj2:tyHeapAllocationRef]
+.type tySigCtxHeap = [sig:tyFieldSignatureRef,basectx:tyContext,baseheap:tyHeapAllocationRef]
+
 
 // HACK: TODO this is necessary for traces, Souffle would not 
 // allow to have this in ci-trace.dl Need to investigate why...
-.type EmptyAllocationRef
-.type BaseHeapAllocationRef = EmptyAllocationRef|HeapAllocationRef
+.type tyEmptyAllocationRef
+.type tyBaseHeapAllocationRef = tyEmptyAllocationRef|tyHeapAllocationRef
