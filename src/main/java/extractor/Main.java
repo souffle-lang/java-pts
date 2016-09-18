@@ -222,6 +222,31 @@ public class Main {
         db = new TRAPDatabase(new File(_outputDir));
     else
         db = new CSVDatabase(new File(_outputDir));
+
+
+    String[] rels = {"ActualParam", "ApplicationClass", "ArrayType", "AssignCast", "AssignHeapAllocation",
+                     "AssignLocal", "AssignReturnValue", "ClassConstant", "ClassType", "ComponentType",
+                     "DirectSuperclass", "DirectSuperinterface", "ExceptionHandlerBegin", "ExceptionHandlerEnd",
+                     "ExceptionHandlerFormalParam", "ExceptionHandlerMethod", "ExceptionHandlerPrevious",
+                     "ExceptionHandlerRef", "ExceptionHandlerType", "FieldModifier", "FieldSignature",
+                     "FieldSignatureRef", "FormalParam", "HeapAllocationType", "InstructionIndex",
+                     "InterfaceType", "LoadArrayIndex", "LoadInstanceField", "LoadPrimStaticField",
+                     "LoadStaticField", "MethodDeclaration", "MethodDeclarationException", "MethodDescriptorRef",
+                     "MethodInvocationRef", "MethodModifier", "MethodSignatureDescriptor", "MethodSignatureRef",
+                     "MethodSignatureSimpleName", "MethodSignatureType", "ModifierRef", "NormalHeapAllocationRef",
+                     "NullType", "PrimitiveType", "ReifiedClass", "ReturnVar", "SimpleExceptionHandler",
+                     "SimpleNameRef", "SpecialMethodInvocationBase", "SpecialMethodInvocationIn",
+                     "SpecialMethodInvocationSignature", "StaticMethodInvocation", "StaticMethodInvocationIn",
+                     "StaticMethodInvocationSignature", "StoreArrayIndex", "StoreInstanceField",
+                     "StorePrimStaticField", "StoreStaticField", "StringConstant", "ThisVar",
+                     "Throw", "ThrowMethod", "ThrowRef", "VarDeclaringMethod", "VarRef", "VarType",
+                     "VirtualMethodInvocation", "VirtualMethodInvocationBase", "VirtualMethodInvocationIn",
+                     "VirtualMethodInvocationSignature"};
+
+    for(String name : rels) { 
+        db.register(name);
+    } 
+
     FactWriter writer = new FactWriter(db);
     FactGenerator generator = new FactGenerator(writer, _ssa);
 

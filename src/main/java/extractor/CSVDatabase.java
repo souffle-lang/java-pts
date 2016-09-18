@@ -29,6 +29,17 @@ public class CSVDatabase implements Database
 		}
 	}
 
+        public void register(String predicate) {
+		try
+		{
+			Writer w = getWriter(predicate);
+		}
+		catch(IOException exc)
+		{
+			throw new RuntimeException(exc);
+		}
+        } 
+
 	public void add(String predicate, Column arg)
 	{
 		try

@@ -28,6 +28,9 @@ public class TRAPDatabase implements Database {
 		}
 	}
 
+        public void register(String predicate) { 
+        }
+
 	public void add(String predicate, Column arg)
 	{
 		try
