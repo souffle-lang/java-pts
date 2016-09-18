@@ -17,8 +17,8 @@ where ```<program-to-analyze.jar>``` is the jar file for which the fact files ar
 More information about DOOP can be found here:
 http://doop.program-analysis.org/
 
-The modified DOOP points-to analysis has been provided by Oracle Labs
-http://github.com/oracle/souffle/
+The modified DOOP points-to analysis has been provided by Oracle Labs:
+https://github.com/oracle/souffle/tree/master/samples
 
 How to install and run the Soufflé can be found here:
 http://github.com/souffle-lang/souffle
