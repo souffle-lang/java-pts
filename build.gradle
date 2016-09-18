@@ -14,10 +14,6 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 jar {
-    baseName = 'extractor' 
-}
-
-task uberJar(type: Jar) {
     from sourceSets.main.output
     from configurations.runtime.collect {
         if (it.isDirectory()) return it
@@ -25,6 +21,7 @@ task uberJar(type: Jar) {
             exclude 'META-INF/**'
         }
     }
+    baseName = 'extractor' 
     manifest {
         attributes 'Main-Class': 'Main'
     }
