@@ -1,0 +1,36 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+def sootClassesJar = file('lib/sootclasses-2.5.0.jar')
+
+dependencies {
+  compile files(sootClassesJar)
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+jar {
+    baseName = 'extractor' 
+}
+
+task uberJar(type: Jar) {
+    from sourceSets.main.output
+    from configurations.runtime.collect {
+        if (it.isDirectory()) return it
+        return zipTree(it).matching {
+            exclude 'META-INF/**'
+        }
+    }
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
