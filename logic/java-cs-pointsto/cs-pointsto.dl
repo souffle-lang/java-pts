@@ -448,7 +448,7 @@ LoadHeapInstanceField(ctx,to,[sig,basehctx,baseheap]) :-
 // LoadInstanceField
 //
 
-.decl LoadInstanceField(base:VarRef,field:FieldSignatureRef,to:VarRef,inmethod:MethodSignatureRef)
+.decl LoadInstanceField(base:tyVarRef,field:tyFieldSignatureRef,to:tyVarRef,inmethod:tyMethodSignatureRef)
 
 LoadInstanceField(base,field,to,inmethod) :-
    LoadInstanceFieldIndex(base,index,to,inmethod),
@@ -1003,7 +1003,7 @@ StoreHeapInstanceField([signature,basehctx,baseheap],ctx,from) :-
 // StoreInstanceField
 //
 
-.decl StoreInstanceField(from:VarRef,base:VarRef,index:FieldSignatureRef,inmethod:MethodSignatureRef) 
+.decl StoreInstanceField(from:tyVarRef,base:tyVarRef,index:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) 
 
 StoreInstanceField(from,base,field,inmethod) :- 
    StoreInstanceFieldIndex(from,base,index,inmethod),

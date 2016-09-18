@@ -352,9 +352,10 @@
 .decl StaticMethodInvocationSignature(invocation:tyMethodInvocationRef,signature:tyMethodSignatureRef) input 
 
 //
-// StoreInstanceField
-// 
-.decl StoreInstanceField(from:tyVarRef,base:tyVarRef,index:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) input
+// StoreArrayIndex
+//
+
+.decl StoreArrayIndex(from:tyVarRef,base:tyVarRef,inmethod:tyMethodSignatureRef) input 
 
 //
 // StoreInstanceFieldIndex

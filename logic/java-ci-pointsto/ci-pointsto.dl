@@ -885,7 +885,7 @@ StoreHeapArrayIndex(baseheap,from) :-
 // StoreInstanceField
 //
 
-.decl StoreInstanceField(from:VarRef,base:VarRef,index:FieldSignatureRef,inmethod:MethodSignatureRef) 
+.decl StoreInstanceField(from:tyVarRef,base:tyVarRef,index:tyFieldSignatureRef,inmethod:tyMethodSignatureRef) 
 
 StoreInstanceField(from,base,field,inmethod) :- 
    StoreInstanceFieldIndex(from,base,index,inmethod),
