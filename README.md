@@ -5,7 +5,7 @@ Currently there are two points-to analyses implemented in form of logical specif
 
 The extractor can be build by typing 
 ```
-./gradlew uberJar
+./gradlew build
 ```
 
 The extractor can be invoked by typing 
