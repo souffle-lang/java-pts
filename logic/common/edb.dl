@@ -89,54 +89,6 @@
 .decl AssignReturnValue(invocation:tyMethodInvocationRef,to:tyVarRef) input 
 
 //
-// BasicBlockRef
-//
-
-.decl BasicBlockRef(basicBlock:tyBasicBlockRef) input 
-
-//
-// BasicBlockEntry
-//
-
-.decl BasicBlockEntry(basicBlock:tyBasicBlockRef) input 
-
-//
-// BasicBlockIn
-//
-
-.decl BasicBlockIn(basicBlock:tyBasicBlockRef,method:tyMethodSignatureRef) input 
-
-
-//
-// BasicBlockExit
-//
-
-.decl BasicBlockExit(basicBlock:tyBasicBlockRef) input
-
-//
-// BasicBlockSuccessor
-//
-
-.decl BasicBlockSuccessor(b1:tyBasicBlockRef, b2:tyBasicBlockRef) input 
-
-//
-// BasicBlockLastInvocationIndex
-//
-
-.decl BasicBlockLastInvocationIndex(b1:tyBasicBlockRef, n:number) input 
-
-//
-// InvocationBasicBlock
-//
-.decl InvocationBasicBlock(c:tyMethodInvocationRef, b:tyBasicBlockRef, i:number) input
-
-//
-// SuccessorInvocationIndex
-//
-.decl SuccessorInvocationIndex(i:number, j:number) input
-
-
-//
 // ClassConstant
 //
 
