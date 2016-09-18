@@ -170,7 +170,7 @@ LoadInstanceVarPointsTo(heap,var)  :-
 .decl StoreInstanceVarPointsTo(heapAllocation:tyHeapAllocationRef,variable:tyVarRef)
 StoreInstanceVarPointsTo(heap,var) :-  
   BaseVarPointsTo(heap,var),     
-  StoreInstanceField(_, var, _, _).
+  StoreInstanceFieldIndex(_, var, _, _).
 
 
 .decl Alias(v1:tyVarRef, v2:tyVarRef)

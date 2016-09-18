@@ -441,7 +441,7 @@ LoadHeapArrayIndex(calleeCtx,to,basehctx,baseheap) :-
 
 LoadHeapInstanceField(ctx,to,[sig,basehctx,baseheap]) :- 
    ReachableLoadInstanceFieldBase(base),
-   LoadInstanceFieldIndex(base,sig,to,_),
+   LoadInstanceField(base,sig,to,_),
    VarPointsTo(basehctx,baseheap,ctx,base).
  
 //
@@ -761,7 +761,7 @@ ReachableStoreArrayIndexBase(base) :-
 .decl ReachableStoreInstanceFieldBase(base:tyVarRef) 
 
 ReachableStoreInstanceFieldBase(base) :- 
-   StoreInstanceFieldIndex(_,base,_,inmethod),
+   StoreInstanceField(_,base,_,inmethod),
    Reachable(inmethod).
 
 //
