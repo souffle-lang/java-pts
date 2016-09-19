@@ -1,6 +1,6 @@
 # Java Points-To Analysis for Soufflé
 
-This repository contains an modified DOOP extractor and a modified points-to specifications for Soufflé.
+This repository contains a modified DOOP extractor and a modified points-to specifications for Soufflé.
 Currently there are two points-to analyses implemented in form of logical specifications: context-insensitive with call-graph construction on the fly and context-sensitive (2-Heap + 1-Object). 
 
 The extractor can be build by typing 
