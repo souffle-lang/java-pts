@@ -169,14 +169,6 @@
 .decl FormalParam(index:number,method:tyMethodSignatureRef,var:tyVarRef) input 
 
 //
-// HeapAllocationRefDebugInfo
-//
-
-.decl HeapAllocationRefDebugInfo(file:tyFile,line:number,heap:tyHeapAllocationRef) input 
-
-
-
-//
 // InstructionIndex
 //
 

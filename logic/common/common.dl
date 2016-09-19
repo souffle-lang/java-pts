@@ -730,10 +730,6 @@ HeapAllocationRef(x) :-
    UnknownReturnedHeapAllocation(_,x).
 
 HeapAllocationRef(x) :- 
-   HeapAllocationRefDebugInfo(_,_,x).
-
-
-HeapAllocationRef(x) :- 
    ClassConstant(x).
 
 HeapAllocationRef(x) :- 
