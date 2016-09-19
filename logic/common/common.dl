@@ -570,27 +570,6 @@ InstructionMethod(invocation,inmethod) :-
 InstructionMethod(invocation,inmethod) :- 
    StaticMethodInvocationIn(invocation,inmethod).
 
-
-//
-// EntryBasicBlock
-//
-
-.decl EntryBasicBlock(method:tyMethodSignatureRef,basicBlock:tyBasicBlockRef) 
-
-EntryBasicBlock(method,basicBlock) :- 
-   BasicBlockIn(basicBlock,method),
-   BasicBlockEntry(basicBlock).
-
-//
-// ExitBasicBlock
-//
-
-.decl ExitBasicBlock(basicBlock:tyBasicBlockRef, method:tyMethodSignatureRef) 
-
-ExitBasicBlock(basicBlock, method) :- 
-  BasicBlockIn(basicBlock, method), 
-  BasicBlockExit(basicBlock).
-
 //
 // FieldIndexSignature
 //
@@ -610,9 +589,9 @@ FieldIndexSignature(field,index,subclass) :-
 
 .decl HasNoMethodBody(method:tyMethodSignatureRef) 
 
-HasNoMethodBody(method) :- 
-   MethodSignatureRef(method),
-   !EntryBasicBlock(method, _).
+//HasNoMethodBody(method) :- 
+//   MethodSignatureRef(method),
+//   !EntryBasicBlock(method, _).
 
 HasNoMethodBody(method) :- 
    MethodSignatureRef(method),
