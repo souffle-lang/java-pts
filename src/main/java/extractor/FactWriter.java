@@ -323,14 +323,43 @@ public class FactWriter
     }
   }
 
+  private int getFieldIndex(SootField f) 
+  { 
+    SootClass c = f.getDeclaringClass(); 
+    int index = 0;
+    // compute field index offset 
+    // (i.e. sum up all number of fields of all super classes)  
+    if(c.hasSuperclass() && !c.isInterface()) { 
+       SootClass s = c.getSuperclass();
+       while( s.hasSuperclass() && !s.isInterface()) {
+          index = index + s.getFields().size();
+          s = s.getSuperclass();
+       }
+    }
+    for(SootField t: c.getFields()) { 
+      if(t == f) { 
+         break;
+      } 
+      index = index + 1;
+    } 
+    return index; 
+  } 
+
   public void writeStoreInstanceField(SootMethod m, SootField f, Local base, Local from)
   {
     if(f.getType() instanceof RefLikeType)
     {
+
     	_db.add("StoreInstanceField",
     			_db.addEntity("VarRef", _rep.local(m, from)),
     			_db.addEntity("VarRef", _rep.local(m, base)),
     			_db.addEntity("FieldSignatureRef", _rep.signature(f)),
+    			_db.addEntity("MethodSignatureRef", _rep.method(m)));
+
+    	_db.add("StoreInstanceFieldIndex",
+    			_db.addEntity("VarRef", _rep.local(m, from)),
+    			_db.addEntity("VarRef", _rep.local(m, base)),
+    			_db.asIntColumn(String.valueOf(getFieldIndex(f))),
     			_db.addEntity("MethodSignatureRef", _rep.method(m)));
     }
   }
@@ -342,6 +371,12 @@ public class FactWriter
     	_db.add("LoadInstanceField",
     			_db.addEntity("VarRef", _rep.local(m, base)),
     			_db.addEntity("FieldSignatureRef", _rep.signature(f)),
+    			_db.addEntity("VarRef", _rep.local(m, to)),
+    			_db.addEntity("MethodSignatureRef", _rep.method(m)));
+
+    	_db.add("LoadInstanceFieldIndex",
+    			_db.addEntity("VarRef", _rep.local(m, base)),
+    			_db.asIntColumn(String.valueOf(getFieldIndex(f))),
     			_db.addEntity("VarRef", _rep.local(m, to)),
     			_db.addEntity("MethodSignatureRef", _rep.method(m)));
     }
@@ -403,6 +438,14 @@ public class FactWriter
   {
     _db.add("ApplicationClass",
       writeType(application));
+  }
+
+  public void writeDirectFieldIndexSignature(SootField f, int index)
+  {
+	  _db.add("DirectFieldIndexSignature",
+			  writeType(f.getType()),
+                          _db.asIntColumn(String.valueOf(index)),
+			  _db.addEntity("FieldSignatureRef", _rep.signature(f)));
   }
 
   public void writeFieldSignature(SootField f)

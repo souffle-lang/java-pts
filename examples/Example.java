@@ -33,10 +33,12 @@ public class Example
 
 
 class Animal {
+        Animal a; 
 
 	void play() {}
 
 	Animal playWith(Animal other) {
+                a = other;
 		other.play();
 		return other;
 	}
@@ -44,9 +46,11 @@ class Animal {
 
 class Cat extends Animal {
 	Cat parent;
+        Cat petParent;
 
 	void setParent(Cat c) {
 		this.parent = c;
+		this.petParent = c;
 	}
 
 	Cat getParent() {

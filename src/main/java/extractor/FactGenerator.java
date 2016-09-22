@@ -31,7 +31,7 @@ public class FactGenerator
     _writer.writeStandardFacts();
     _ssa = ssa;
   }
-  
+
   public void generate(SootClass c)
   {
     _writer.writeClassOrInterfaceType(c);
@@ -47,9 +47,20 @@ public class FactGenerator
       _writer.writeDirectSuperinterface(c, i);
     }
 
+    int idx = 0;
+    // compute field index offset 
+    // (i.e. sum up all number of fields of all super classes)  
+    if(c.hasSuperclass() && !c.isInterface()) { 
+       SootClass s = c.getSuperclass();
+       while( s.hasSuperclass() && !s.isInterface()) {
+          idx = idx + s.getFields().size();
+          s = s.getSuperclass();
+       }
+    }
     for(SootField f : c.getFields())
     {
-      generate(f);
+      generate(f, idx);
+      idx = idx + 1; 
     }
 
     for(SootMethod m : c.getMethods())
@@ -59,9 +70,10 @@ public class FactGenerator
     }
   }
 
-  public void generate(SootField f)
+  public void generate(SootField f, int idx)
   {
     _writer.writeFieldSignature(f);
+    _writer.writeDirectFieldIndexSignature(f, idx);
 
     int modifiers = f.getModifiers();
     if(Modifier.isAbstract(modifiers))
